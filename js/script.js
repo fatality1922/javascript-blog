@@ -1,9 +1,5 @@
 'use strict';
 
-// document.getElementById('test-button').addEventListener('click', function(){
-//     const links = document.querySelectorAll('.titles a');
-//     console.log('links:', links);
-//   });
 
 const titleClickHandler = function (event) {
     const clickedElement = this;
@@ -16,9 +12,12 @@ const titleClickHandler = function (event) {
     for (let activeLink of activeLinks) {
         activeLink.classList.remove('active');
     }
-    /* [IN PROGRESS] add class 'active' to the clicked link */
-    //activeLink.classList.con('active');
+    /* [Done] add class 'active' to the clicked link */
+
+    clickedElement.classList.add('active');
+
     /* [DONE] remove class 'active' from all articles */
+    
     const activeArticles = document.querySelectorAll('.post.active');
 
     for (let activeArticle of activeArticles) {
