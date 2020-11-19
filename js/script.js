@@ -51,7 +51,6 @@ function generateTitleLinks() {
 
         /* get the article id */
         const articleId = article.getAttribute("id");
-        console.log(articleId);
 
         /* find the title element */
         const articleTitle = article.querySelector(optTitleSelector).innerHTML;
@@ -61,14 +60,13 @@ function generateTitleLinks() {
         //const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>'; //???
         const linkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
 
-        console.log(linkHTML);
         /* insert link into titleList */
-        titleList.innerHTML += linkHTML;
+        titleList.insertAdjacentHTML('beforeend', linkHTML);
     }
 
 
     const links = document.querySelectorAll('.titles a');
-
+    console.log(links); 
     for (let link of links) {
         link.addEventListener('click', titleClickHandler);
     }
