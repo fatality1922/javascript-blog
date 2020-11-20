@@ -33,7 +33,7 @@ const titleClickHandler = function (event) {
 
     /* [DONE] add class 'active' to the correct article */
     targetArticle.classList.add('active');
-}
+};
 
 
 
@@ -50,7 +50,7 @@ function generateTitleLinks() {
     for (let article of articles) {
 
         /* get the article id */
-        const articleId = article.getAttribute("id");
+        const articleId = article.getAttribute('id');
 
         /* find the title element */
         const articleTitle = article.querySelector(optTitleSelector).innerHTML;
