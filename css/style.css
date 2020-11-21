@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #fff;
+  background: white;
   font-family: "Source Sans Pro", sans-serif;
   color: #444;
   font-weight: 300;
@@ -50,7 +50,7 @@ body {
 }
 
 .sidebar, .posts {
-  background: #fff;
+  background: white;
   margin-right: 10px;
   padding: 40px;
   border: 1px solid #444;
