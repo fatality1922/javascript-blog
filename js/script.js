@@ -10,9 +10,7 @@ const optArticleSelector = '.post',
 const titleClickHandler = function (event) {
     event.preventDefault(); //wylacza predefiniowane ustawienia eventow
     const clickedElement = this;
-    // console.log('clickedElement (with plus): ' + clickedElement);
-    // console.log(event);
-
+    
     /* [DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
     for (let activeLink of activeLinks) {
@@ -36,7 +34,6 @@ const titleClickHandler = function (event) {
     /* [DONE] add class 'active' to the correct article */
     targetArticle.classList.add('active');
 };
-
 
 
 
@@ -68,7 +65,6 @@ function generateTitleLinks() {
 
 
     const links = document.querySelectorAll('.titles a');
-    //console.log(links); 
     for (let link of links) {
         link.addEventListener('click', titleClickHandler);
     }
@@ -117,15 +113,15 @@ generateTags();
 
 function tagClickHandler(event){
     /* prevent default action for this event */
-  
+    event.preventDefault();
     /* make new constant named "clickedElement" and give it the value of "this" */
-  
+    const clickedElement = this;
     /* make a new constant "href" and read the attribute "href" of the clicked element */
-  
+    const href = clickedElement.getAttribute('href');
     /* make a new constant "tag" and extract tag from the "href" constant */
-  
+    const targetTag = document.querySelector(href);
     /* find all tag links with class active */
-  
+  console.log('href');
     /* START LOOP: for each active tag link */
   
     /* remove class active */
@@ -142,15 +138,49 @@ function tagClickHandler(event){
   
     /* execute function "generateTitleLinks" with article selector as argument */
 }
-  
+
+
 function addClickListenersToTags(){
     /* find all links to tags */
-  
+    
+    const links = document.querySelectorAll('href');
+    console.log(links);
     /* START LOOP: for each link */
-  
+    for (let link of links){
     /* add tagClickHandler as event listener for that link */
-  
+        link.addEventListener('click', tagClickHandler);
     /* END LOOP: for each link */
+    }
 }
-  
+
 addClickListenersToTags();
+
+
+// event.preventDefault(); //wylacza predefiniowane ustawienia eventow
+// const clickedElement = this;
+// // console.log('clickedElement (with plus): ' + clickedElement);
+// // console.log(event);
+
+// /* [DONE] remove class 'active' from all article links  */
+// const activeLinks = document.querySelectorAll('.titles a.active');
+// for (let activeLink of activeLinks) {
+//     activeLink.classList.remove('active'); 
+// }
+// /* [Done] add class 'active' to the clicked link */
+// clickedElement.classList.add('active');
+
+// /* [DONE] remove class 'active' from all articles */
+// const activeArticles = document.querySelectorAll('.post.active');
+// for (let activeArticle of activeArticles) {
+//     activeArticle.classList.remove('active');
+// }
+// /* [DONE] get 'href' attribute from the clicked link */
+// const articleSelector = clickedElement.getAttribute('href');
+
+// /* [DONE] find the correct article using the selector (value of 'href' attribute) */
+// const targetArticle = document.querySelector(articleSelector); 
+// //console.log(targetArticle);
+
+// /* [DONE] add class 'active' to the correct article */
+// targetArticle.classList.add('active');
+// };
