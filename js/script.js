@@ -39,12 +39,14 @@ const titleClickHandler = function (event) {
 
 
 
-function generateTitleLinks() {
+function generateTitleLinks(customSelector = '') {
 
     /* remove contents of titleList */
-    const titleList = document.querySelector(optTitleListSelector);
-    titleList.innerHTML = '';
-
+    const titleList = document.querySelector(optTitleListSelector + customSelector );
+    //console.log(titleList);
+    titleList.innerHTML = ''; //po co to przypisanie skoro consolelogi pokazja to samo
+    //console.log(titleList);
+    console.log(customSelector);
     /* for each article */
     const articles = document.querySelectorAll(optArticleSelector);
     for (let article of articles) {
@@ -136,7 +138,7 @@ function tagClickHandler(event) {
     }
     /* find all tag links with "href" attribute equal to the "href" constant */
     const equalTags = document.querySelectorAll('a[href="' + href + '"]');
-
+   
     /* START LOOP: for each found tag link */
     for (let equalTag of equalTags) {
         /* add class active */
@@ -144,7 +146,7 @@ function tagClickHandler(event) {
         /* END LOOP: for each found tag link */
     }
     /* execute function "generateTitleLinks" with article selector as argument */
-    generateTitleLinks('[data-tags~="' + tag + '"]');
+    generateTitleLinks('[data-tags~="' + tag + '"]'); //co oznaczają tu nawiasy kwadratowe
 }
 
 
