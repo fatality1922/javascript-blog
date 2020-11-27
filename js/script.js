@@ -40,7 +40,7 @@ const titleClickHandler = function (event) {
 
 
 
-function generateTitleLinks(customSelector = '') {
+const generateTitleLinks = function (customSelector = '') {
 
     /* remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
@@ -73,14 +73,27 @@ function generateTitleLinks(customSelector = '') {
     for (let link of links) {
         link.addEventListener('click', titleClickHandler);
     }
-}
+};
 generateTitleLinks();
 
 //modul7
 
-function generateTags() {
+const calculateTagsParams = function (tags) {
+
+    const params = { min: 99999, max: 0 };
+    for (let tag in tags) {
+        
+        params.max = Math.max(tags[tag], params.max); 
+        params.min = tags[tag] < params.min ? tags[tag] : params.min;//mozna na normalych ifach, te dla praktyki dalem
+    }
+    return params;
+};
+
+const generateTags = function () {
+    
     /* [NEW] create a new variable allTags with an empty object */
     let allTags = {};
+    
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -127,14 +140,26 @@ function generateTags() {
     /* [NEW] find list of tags in right column */
     const tagList = document.querySelector('.tags');
 
-    /* [NEW] add html from allTags to tagList */
-    //tagList.innerHTML = allTags.join(' ');
-    console.log(allTags);
-}
+    /* [NEW] create variable for all links HTML code */
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams);
+    let allTagsHTML = '';
+
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for (let tag in allTags) {
+
+        /* [NEW] generate code of a link and add it to allTagsHTML */
+        allTagsHTML += `<li><a href="#tag-${tag}">${tag}</a> ` + ' (' + allTags[tag] + ') </li>';
+        /* [NEW] END LOOP: for each tag in allTags: */
+    }
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
+
+};
 
 generateTags();
 
-function tagClickHandler(event) {
+const tagClickHandler = function (event) {
 
     /* prevent default action for this event */
     event.preventDefault();
@@ -165,10 +190,10 @@ function tagClickHandler(event) {
     }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-tags~="' + tag + '"]'); //co oznaczają tu nawiasy kwadratowe
-}
+};
 
 
-function addClickListenersToTags() {
+const addClickListenersToTags = function () {
     /* find all links to tags */
 
     const links = document.querySelectorAll('[href^="#tag-"]'); //dlaczego tu mialo byc a.active..
@@ -179,13 +204,13 @@ function addClickListenersToTags() {
         link.addEventListener('click', tagClickHandler);
         /* END LOOP: for each link */
     }
-}
+};
 
 addClickListenersToTags();
 
 
 
-function generateAuthors() {
+const generateAuthors = function () {
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -208,11 +233,11 @@ function generateAuthors() {
         authorsWrapper.insertAdjacentHTML('beforeend', linkHTML);
         /* END LOOP: for every article: */
     }
-}
+};
 
 generateAuthors();
 
-function authorClickHandler(event) {
+const authorClickHandler = function (event) {
 
     /* prevent default action for this event */
     event.preventDefault();
@@ -243,10 +268,10 @@ function authorClickHandler(event) {
     }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-author="' + author + '"]');
-}
+};
 
 
-function addClickListenersToAuthors() {
+const addClickListenersToAuthors = function () {
     /* find all links to tags */
 
     const links = document.querySelectorAll('[href^="#author-"]');
@@ -257,6 +282,6 @@ function addClickListenersToAuthors() {
         link.addEventListener('click', authorClickHandler);
         /* END LOOP: for each link */
     }
-}
+};
 
 addClickListenersToAuthors();
